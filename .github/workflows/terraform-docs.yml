@@ -1,0 +1,29 @@
+---
+
+name: "Documentation: terraform-docs"
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      # see https://github.com/actions/checkout/releases/tag/v3.5.2
+      - name: Checkout Repository
+        uses: "actions/checkout@v3.5.2" # v3.5.2
+        with:
+          ref: "${{ github.event.pull_request.head.ref }}"
+          fetch-depth: 1
+
+      # see https://github.com/terraform-docs/gh-actions/releases/tag/v1.0.0
+      - name: Render documentation for repository and push changes back to branch
+        uses: "terraform-docs/gh-actions@v1.0.0" # v1.0.0
+        with:
+          config-file: ".terraform-docs.yml"
+          output-file: "README.md"
+          output-method: inject"
+          git-push: true
+          working-dir: "./"

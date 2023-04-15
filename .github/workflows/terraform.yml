@@ -1,0 +1,36 @@
+---
+
+name: "Code Quality: Terraform"
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      # see https://github.com/actions/checkout/releases/tag/v3.5.2
+      - name: Checkout Repository
+        uses: "actions/checkout@v3.5.2" # v3.5.2
+        with:
+          fetch-depth: 1
+
+      # see https://github.com/hashicorp/setup-terraform/releases/tag/v2.0.3
+      - name: Set up Terraform
+        uses: "hashicorp/setup-terraform@v2.0.3" # v2.0.3
+        with:
+          terraform_wrapper: false
+          terraform_version: "${{ vars.TERRAFORM_VERSION }}"
+
+      - name: Initialize Terraform
+        run: terraform init
+        env:
+          working-dir: "./"
+
+      - name: Format Terraform Code
+        run: terraform fmt -check -recursive
+        env:
+          working-dir: "./"
