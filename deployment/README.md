@@ -28,5 +28,10 @@ data "aws_eks_cluster" "cluster" {
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| cluster_endpoint | Endpoint for EKS control plane |
+| cluster_name | Kubernetes Cluster Name |
+| cluster_security_group_id | Security group ids attached to the cluster control plane |
+| command_update_kubectl | Credential Command |
 <!-- END_TF_DOCS -->

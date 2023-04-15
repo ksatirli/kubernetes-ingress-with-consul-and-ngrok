@@ -29,6 +29,18 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "2.19.0"
     }
+
+    # see https://registry.terraform.io/providers/hashicorp/tls/4.0.4
+    tls = {
+      source  = "hashicorp/tls"
+      version = "4.0.4"
+    }
+
+    # see https://registry.terraform.io/providers/hashicorp/random/3.5.1
+    random = {
+      source  = "hashicorp/random"
+      version = "3.5.1"
+    }
   }
 
   # see https://developer.hashicorp.com/terraform/language/settings#specifying-a-required-terraform-version
