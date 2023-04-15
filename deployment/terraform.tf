@@ -6,7 +6,7 @@ terraform {
   #
   #    # see https://developer.hashicorp.com/terraform/cli/cloud/settings#workspaces
   #    workspaces {
-  #      name = "service-mesh-with-consul-and-ngrok"
+  #      name = "service-mesh-with-consul-and-ngrok-deployment"
   #    }
   #  }
 
@@ -34,12 +34,6 @@ terraform {
     tls = {
       source  = "hashicorp/tls"
       version = "4.0.4"
-    }
-
-    # see https://registry.terraform.io/providers/hashicorp/random/3.5.1
-    random = {
-      source  = "hashicorp/random"
-      version = "3.5.1"
     }
   }
 

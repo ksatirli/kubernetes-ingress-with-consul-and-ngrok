@@ -13,7 +13,7 @@ The Kubernetes Cluster can be consumed via the [aws_eks_cluster](https://registr
 
 ```hcl
 # see https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster
-data "aws_eks_cluster" "cluster" {
+data "aws_eks_cluster" "main" {
   name = "consul-ngrok"
 }
 ```

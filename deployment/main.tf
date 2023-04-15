@@ -1,9 +1,3 @@
-# see https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
-resource "random_string" "suffix" {
-  length  = 8
-  special = false
-}
-
 # see https://developer.hashicorp.com/terraform/tutorials/kubernetes/eks#set-up-and-initialize-your-terraform-workspace
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
