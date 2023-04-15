@@ -1,6 +1,3 @@
-# This is a Terraform-managed file; manual changes will be overwritten.
-# see https://github.com/workloads/github-organization/blob/main/templates/.tflint.hcl
-
 # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/module-inspection.md
 config {
   module = false
