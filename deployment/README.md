@@ -33,5 +33,6 @@ data "aws_eks_cluster" "main" {
 | cluster_endpoint | Endpoint for EKS control plane |
 | cluster_name | Kubernetes Cluster Name |
 | cluster_security_group_id | Security group ids attached to the cluster control plane |
-| command_update_kubectl | Credential Command |
+| command_install_consul | Command to install Consul on Kubernetes. |
+| command_update_kubectl | Command to update kubectl configuration. |
 <!-- END_TF_DOCS -->

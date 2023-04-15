@@ -14,6 +14,12 @@ output "cluster_name" {
 }
 
 output "command_update_kubectl" {
-  description = "Credential Command"
+  description = "Command to update kubectl configuration."
   value       = "aws eks --region ${var.aws_region} update-kubeconfig --name ${module.eks.cluster_name}"
 }
+
+output "command_install_consul" {
+  description = "Command to install Consul on Kubernetes."
+  value       = "consul-k8s install -context='${module.eks.cluster_arn}'"
+}
+
