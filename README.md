@@ -13,9 +13,9 @@
 
 ## Requirements
 
-* [HashiCorp Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) `v1.4.5` or later
-* [ngrok](https://github.com/ngrok/homebrew-ngrok) `v3.2.2` or later 
-- AWS [account](https://aws.amazon.com/free/)
+* [HashiCorp Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) `v1.4.5` (or later)
+* [ngrok](https://github.com/ngrok/homebrew-ngrok) `v3.2.2` (or later) 
+* AWS [account](https://aws.amazon.com/free/)
 
 ## Usage
 
