@@ -1,7 +1,35 @@
-# see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace
-resource "kubernetes_namespace" "ngrok_ingress_controller" {
-  metadata {
-    name = var.project_identifier
+# see https://github.com/ngrok/kubernetes-ingress-controller#installation
+# and https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
+resource "helm_release" "ngrok_ingress_controller" {
+  name = "ngrok-ingress-controller"
+
+  # see https://github.com/ngrok/kubernetes-ingress-controller
+  repository = "https://ngrok.github.io/kubernetes-ingress-controller"
+  chart      = "kubernetes-ingress-controller"
+  namespace  = "default"
+
+  # see https://github.com/ngrok/kubernetes-ingress-controller/releases/tag/kubernetes-ingress-controller-0.6.0
+  version = "0.6.0"
+
+  values = [
+    templatefile("./templates/ngrok.values.tftpl.yml", {
+      kubernetes_cluster_ip = var.kubernetes_cluster_ip
+    })
+  ]
+
+  set {
+    name  = "credentials.apiKey"
+    value = var.ngrok_apikey
+  }
+
+  set {
+    name  = "credentials.authtoken"
+    value = var.ngrok_authtoken
+  }
+
+  set {
+   name = "consul.hashicorp.com/connect-service"
+   value = "ngrok-ingress-controller-kubernetes-ingress-controller"
   }
 }
 
@@ -29,41 +57,4 @@ resource "kubernetes_service" "ngrok_ingress_controller" {
       "app.kubernetes.io/name" = "kubernetes-ingress-controller"
     }
   }
-}
-
-# see https://github.com/ngrok/kubernetes-ingress-controller#installation
-# and https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
-resource "helm_release" "ngrok_ingress_controller" {
-  name = "ngrok-ingress-controller"
-
-  # see https://github.com/ngrok/kubernetes-ingress-controller
-  repository = "https://ngrok.github.io/kubernetes-ingress-controller"
-  chart      = "kubernetes-ingress-controller"
-  namespace  = kubernetes_namespace.ngrok_ingress_controller.id
-
-  # see https://github.com/ngrok/kubernetes-ingress-controller/releases/tag/kubernetes-ingress-controller-0.6.0
-  version = "0.6.0"
-
-  values = [
-    templatefile("./templates/ngrok.values.tftpl.yml", {
-      kubernetes_cluster_ip = var.kubernetes_cluster_ip
-    })
-  ]
-
-  set {
-    name  = "credentials.apiKey"
-    value = var.ngrok_apikey
-  }
-
-  set {
-    name  = "credentials.authtoken"
-    value = var.ngrok_authtoken
-  }
-
-  set {
-   name = "consul.hashicorp.com/connect-service"
-   value = "ngrok-ingress-controller-kubernetes-ingress-controller"
-  }
-}
-
 }
