@@ -1,4 +1,4 @@
-# Service Mesh with HashiCorp Consul and ngrok
+# Kubernetes Ingress with Consul and ngrok
 
 ## Table of Contents
 
@@ -13,15 +13,10 @@
 
 ## Requirements
 
+* [Docker](https://docs.docker.com/get-docker/)
 * [HashiCorp Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) `v1.4.5` (or later)
-* [ngrok](https://github.com/ngrok/homebrew-ngrok) `v3.2.2` (or later) 
-* AWS [account](https://aws.amazon.com/free/)
-
-## Usage
-
-This repository uses a standard Terraform workflow (`init`, `plan`, `apply`).
-
-For more information, including detailed usage guidelines, see the [Terraform documentation](https://developer.hashicorp.com/terraform/cli/commands).
+* [ngrok](https://github.com/ngrok/homebrew-ngrok) `v3.2.2` (or later)
+* [Shipyard](https://shipyard.run) `v0.5.2` (or later)
 
 ## Author Information
 
