@@ -1,12 +1,13 @@
 # Kubernetes Ingress with Consul and ngrok
 
+> Sample code for setting up HashiCorp Consul and ngrok Ingress Controllers on Kubernetes
+
 ## Table of Contents
 
 <!-- TOC -->
-* [Service Mesh with HashiCorp Consul and ngrok](#service-mesh-with-hashicorp-consul-and-ngrok)
+* [Kubernetes Ingress with Consul and ngrok](#kubernetes-ingress-with-consul-and-ngrok)
   * [Table of Contents](#table-of-contents)
   * [Requirements](#requirements)
-  * [Usage](#usage)
   * [Author Information](#author-information)
   * [License](#license)
 <!-- TOC -->
@@ -14,13 +15,13 @@
 ## Requirements
 
 * [Docker](https://docs.docker.com/get-docker/)
-* [HashiCorp Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) `v1.4.5` (or later)
 * [ngrok](https://github.com/ngrok/homebrew-ngrok) `v3.2.2` (or later)
 * [Shipyard](https://shipyard.run) `v0.5.2` (or later)
+* [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) `v1.4.5` (or later)
 
 ## Author Information
 
-This module is maintained by the contributors listed on [GitHub](https://github.com/ksatirli/service-mesh-with-consul-and-ngrok/graphs/contributors).
+This module is maintained by the contributors listed on [GitHub](https://github.com/ksatirli/kubernetes-ingress-with-consul-and-ngrok/graphs/contributors).
 
 ## License
 
