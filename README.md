@@ -8,6 +8,7 @@
 * [Kubernetes Ingress with Consul and ngrok](#kubernetes-ingress-with-consul-and-ngrok)
   * [Table of Contents](#table-of-contents)
   * [Requirements](#requirements)
+  * [Usage](#usage)
   * [Author Information](#author-information)
   * [License](#license)
 <!-- TOC -->
@@ -18,6 +19,13 @@
 * [ngrok](https://github.com/ngrok/homebrew-ngrok) `v3.2.2` (or later)
 * [Shipyard](https://shipyard.run) `v0.5.2` (or later)
 * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) `v1.4.5` (or later)
+
+## Usage
+
+This project consists of two components:
+
+* `./shipyard` contains a Shipyard Blueprint to deploy [HashiCorp Consul](https://consul.io/) on Kubernetes.
+* `./terraform` contains [HashiCorp Terraform](https://terraform.io/) code to deploy the [ngrok Ingress Controller](https://github.com/ngrok/kubernetes-ingress-controller) and related resources.
 
 ## Author Information
 
