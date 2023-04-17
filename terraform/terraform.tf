@@ -1,4 +1,15 @@
 terraform {
+  #  # see https://developer.hashicorp.com/terraform/language/settings/terraform-cloud
+  #  cloud {
+  #    # see https://developer.hashicorp.com/terraform/cli/cloud/settings#organization
+  #    organization = "ksatirli"
+  #
+  #    # see https://developer.hashicorp.com/terraform/cli/cloud/settings#workspaces
+  #    workspaces {
+  #      name = "kubernetes-ingress-with-consul-and-ngrok"
+  #    }
+  #  }
+
   # see https://developer.hashicorp.com/terraform/language/settings#specifying-provider-requirements
   required_providers {
     # see https://registry.terraform.io/providers/hashicorp/helm/2.9.0
