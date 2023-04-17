@@ -65,7 +65,7 @@ resource "kubernetes_ingress_v1" "game_2048" {
     ingress_class_name = "ngrok"
 
     rule {
-      host = var.ngrok_domain
+      host = ngrok_reserved_domain.main.name
 
       http {
         path {

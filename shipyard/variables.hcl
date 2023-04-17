@@ -1,5 +1,5 @@
 variable "consul_health_check_timeout" {
-  default     = "240s"
+  default     = "120s"
   description = "Increase the timeout for when running on CI, Consul startup can take longer due to limited resources"
 }
 

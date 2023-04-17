@@ -1,0 +1,49 @@
+---
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ProxyDefaults
+metadata:
+  name: global
+spec:
+  meshGateway:
+    mode: local
+  config:
+    envoy_prometheus_bind_addr: '0.0.0.0:9102'
+    envoy_extra_static_clusters_json: >
+      {
+        "name": "tempo",
+        "type": "STRICT_DNS",
+        "connect_timeout": "3.000s",
+        "lb_policy": "ROUND_ROBIN",
+        "load_assignment": {
+          "cluster_name": "tempo",
+          "endpoints": [
+            {
+              "lb_endpoints": [
+                {
+                  "endpoint": {
+                    "address": {
+                      "socket_address": {
+                        "address": "tempo.#{{ .Vars.monitoring_namespace}}.svc",
+                        "port_value": 9411
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    envoy_tracing_json: >
+      {
+        "http": {
+          "name": "envoy.tracers.zipkin",
+          "typedConfig": {
+            "@type": "type.googleapis.com/envoy.config.trace.v3.ZipkinConfig",
+            "collector_cluster": "tempo",
+            "collector_endpoint_version": "HTTP_JSON",
+            "collector_endpoint": "/api/v1/spans",
+            "shared_span_context": false
+          }
+        }
+      }
