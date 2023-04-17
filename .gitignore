@@ -3,3 +3,4 @@ terraform.tfvars
 *.tfstate
 *.tfstate.*
 **/.terraform/*
+terraform/shipyard.kubectl_config

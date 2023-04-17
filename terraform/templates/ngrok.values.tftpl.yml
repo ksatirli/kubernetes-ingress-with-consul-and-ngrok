@@ -1,0 +1,6 @@
+image:
+  tag: 0.4.0
+
+podAnnotations:
+  consul.hashicorp.com/connect-inject: "true"
+  consul.hashicorp.com/transparent-proxy-exclude-outbound-cidrs: "${kubernetes_cluster_ip}"

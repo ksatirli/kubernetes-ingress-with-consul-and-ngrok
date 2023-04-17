@@ -1,0 +1,5 @@
+# see https://dashboard.ngrok.com/api
+ngrok_apikey    = "..."
+
+# see https://dashboard.ngrok.com/get-started/your-authtoken
+ngrok_authtoken = "..."
