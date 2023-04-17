@@ -12,18 +12,3 @@ k8s_cluster "dc1" {
 module "consul" {
   source = "./modules/consul"
 }
-
-# see https://shipyard.run/docs/resources/k8s_config
-k8s_config "app" {
-  cluster = "k8s_cluster.dc1"
-
-  paths = [
-    "./app/consul-config.yaml",
-  ]
-
-  wait_until_ready = true
-
-  depends_on = [
-    "module.consul"
-  ]
-}

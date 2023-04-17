@@ -1,3 +1,10 @@
+# see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace
+resource "kubernetes_namespace" "main" {
+  metadata {
+    name = var.project_identifier
+  }
+}
+
 # see https://github.com/ngrok/kubernetes-ingress-controller/tree/main/docs/examples/consul#installing-the-ingress-controller
 # and https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service
 resource "kubernetes_service" "ngrok_ingress_controller" {
@@ -14,8 +21,8 @@ resource "kubernetes_service" "ngrok_ingress_controller" {
     port {
       name        = "http"
       protocol    = "TCP"
-      port        = 80
-      target_port = "80"
+      port        = var.sample_app_port
+      target_port = "${var.sample_app_port}"
     }
 
     selector = {

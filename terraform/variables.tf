@@ -42,3 +42,9 @@ variable "project_identifier" {
   description = "Project Identifier."
   default     = "ngrok-ingress-controller"
 }
+
+variable "sample_app_port" {
+  type        = number
+  description = "Sample Application Network Port."
+  default     = 80
+}

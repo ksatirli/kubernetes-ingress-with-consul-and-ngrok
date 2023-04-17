@@ -21,7 +21,7 @@ resource "kubernetes_ingress_v1" "ingress_consul" {
               name = "dashboard"
 
               port {
-                number = 80
+                number = var.sample_app_port
               }
             }
           }

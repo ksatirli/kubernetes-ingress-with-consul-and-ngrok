@@ -27,7 +27,7 @@ resource "kubernetes_deployment" "game_2048" {
 
           port {
             name           = "http"
-            container_port = 80
+            container_port = var.sample_app_port
           }
         }
       }
@@ -45,8 +45,8 @@ resource "kubernetes_service" "game_2048" {
   spec {
     port {
       name        = "http"
-      port        = 80
-      target_port = "80"
+      port        = var.sample_app_port
+      target_port = var.sample_app_port
     }
 
     selector = {
@@ -77,7 +77,7 @@ resource "kubernetes_ingress_v1" "game_2048" {
               name = "game-2048"
 
               port {
-                number = 80
+                number = var.sample_app_port
               }
             }
           }
