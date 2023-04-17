@@ -1,3 +1,5 @@
+---
+
 image:
   # see https://github.com/ngrok/kubernetes-ingress-controller/blob/main/docs/examples/consul/README.md#installing-the-ingress-controller
   tag: 0.4.0

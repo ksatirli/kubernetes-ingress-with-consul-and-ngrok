@@ -1,5 +1,6 @@
 ---
 
+# yamllint disable-line rule:line-length
 global:
   name: consul
 
