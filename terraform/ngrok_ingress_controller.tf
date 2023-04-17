@@ -33,8 +33,7 @@ resource "kubernetes_service" "ngrok_ingress_controller" {
 
 # see https://github.com/ngrok/kubernetes-ingress-controller#installation
 # and https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
-resource "helm_release" "ngrok" {
-  # default to namespace name, for convenience
+resource "helm_release" "ngrok_ingress_controller" {
   name = "ngrok-ingress-controller"
 
   # see https://github.com/ngrok/kubernetes-ingress-controller
