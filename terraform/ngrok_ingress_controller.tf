@@ -28,8 +28,8 @@ resource "helm_release" "ngrok_ingress_controller" {
   }
 
   set {
-   name = "consul.hashicorp.com/connect-service"
-   value = "ngrok-ingress-controller-kubernetes-ingress-controller"
+    name  = "consul.hashicorp.com/connect-service"
+    value = "ngrok-ingress-controller-kubernetes-ingress-controller"
   }
 }
 
@@ -50,7 +50,7 @@ resource "kubernetes_service" "ngrok_ingress_controller" {
       name        = "http"
       protocol    = "TCP"
       port        = var.sample_app_port
-      target_port = "${var.sample_app_port}"
+      target_port = var.sample_app_port
     }
 
     selector = {
