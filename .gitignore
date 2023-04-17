@@ -3,4 +3,7 @@ terraform.tfvars
 *.tfstate
 *.tfstate.*
 **/.terraform/*
+
+# Shipyard-generated files
 terraform/shipyard.kubectl_config
+terraform/shipyard-config.auto.tfvars
