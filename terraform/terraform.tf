@@ -15,7 +15,7 @@ terraform {
 
     # see https://registry.terraform.io/providers/ngrok/ngrok/0.1.4
     ngrok = {
-      source = "ngrok/ngrok"
+      source  = "ngrok/ngrok"
       version = "0.1.4"
     }
   }

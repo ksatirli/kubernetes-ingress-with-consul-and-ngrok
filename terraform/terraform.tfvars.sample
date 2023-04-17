@@ -3,3 +3,6 @@ ngrok_apikey    = "..."
 
 # see https://dashboard.ngrok.com/get-started/your-authtoken
 ngrok_authtoken = "..."
+
+# see https://dashboard.ngrok.com/cloud-edge/domains
+ngrok_domain = "kubecon-eu-2023.ngrok.dev"

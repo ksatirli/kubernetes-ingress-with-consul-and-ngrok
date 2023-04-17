@@ -32,6 +32,11 @@ variable "ngrok_authtoken" {
   sensitive   = true
 }
 
+variable "ngrok_domain" {
+  type        = string
+  description = "ngrok Custom Domain."
+}
+
 variable "project_identifier" {
   type        = string
   description = "Project Identifier."
