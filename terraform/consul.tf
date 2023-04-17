@@ -49,8 +49,8 @@ resource "kubernetes_manifest" "consul_intention" {
 
       "sources" = [
         {
-          "action" = "allow"
-          "name"   = "ngrok-ingress-controller-kubernetes-ingress-controller"
+          action = "allow"
+          name   = "ngrok-ingress-controller-kubernetes-ingress-controller"
         },
       ]
     }
