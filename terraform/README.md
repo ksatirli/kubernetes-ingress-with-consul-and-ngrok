@@ -9,7 +9,6 @@
 | ngrok_domain | ngrok Custom Domain. | `string` | yes |
 | kubernetes_config_path | Path to `kubectl` Configuration. | `string` | no |
 | kubernetes_context | Kubernetes Context. | `string` | no |
-| project_identifier | Project Identifier. | `string` | no |
 | sample_app_port | Sample Application Network Port. | `number` | no |
 
 ## Outputs

@@ -37,12 +37,6 @@ variable "ngrok_domain" {
   description = "ngrok Custom Domain."
 }
 
-variable "project_identifier" {
-  type        = string
-  description = "Project Identifier."
-  default     = "ngrok-ingress-controller"
-}
-
 variable "sample_app_port" {
   type        = number
   description = "Sample Application Network Port."
