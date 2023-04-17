@@ -39,7 +39,7 @@ ingress ports
 * consul_smi_controller_repository  - default nicholasjackson/consul-smi-controller
 * consul_smi_controller_tag         - default latest
 
-# Outputs
+## Outputs
 
 * CONSUL_HTTP_ADDR    - Address of the Consul ingress
 * CONSUL_TOKEN_FILE   - Location of Consuls bootstrap ACL token, when consul_enable_acls is true
