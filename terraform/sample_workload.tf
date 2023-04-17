@@ -1,7 +1,8 @@
 # see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment
 resource "kubernetes_deployment" "game_2048" {
   metadata {
-    name = "game-2048"
+    name      = "game-2048"
+    namespace = "default"
   }
 
   spec {
@@ -39,7 +40,8 @@ resource "kubernetes_deployment" "game_2048" {
 # and https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service
 resource "kubernetes_service" "game_2048" {
   metadata {
-    name = "game-2048"
+    name      = "game-2048"
+    namespace = "default"
   }
 
   spec {

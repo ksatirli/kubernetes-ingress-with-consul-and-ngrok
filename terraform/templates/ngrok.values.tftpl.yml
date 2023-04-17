@@ -1,6 +1,13 @@
 image:
+  # see https://github.com/ngrok/kubernetes-ingress-controller/blob/main/docs/examples/consul/README.md#installing-the-ingress-controller
   tag: 0.4.0
 
 podAnnotations:
+  # see https://developer.hashicorp.com/consul/docs/k8s/annotations-and-labels#consul-hashicorp-com-connect-inject
   consul.hashicorp.com/connect-inject: "true"
+
+  # see https://developer.hashicorp.com/consul/docs/k8s/annotations-and-labels#consul-hashicorp-com-transparent-proxy-exclude-outbound-cidrs
   consul.hashicorp.com/transparent-proxy-exclude-outbound-cidrs: "${kubernetes_cluster_ip}"
+
+  # see https://developer.hashicorp.com/consul/docs/k8s/annotations-and-labels#consul-hashicorp-com-connect-service-port
+  consul.hashicorp.com/connect-service: "ngrok-ingress-controller-kubernetes-ingress-controller"

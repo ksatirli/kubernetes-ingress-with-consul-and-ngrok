@@ -1,5 +1,5 @@
 # see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace
-resource "kubernetes_namespace" "main" {
+resource "kubernetes_namespace" "ngrok_ingress_controller" {
   metadata {
     name = var.project_identifier
   }
@@ -35,12 +35,12 @@ resource "kubernetes_service" "ngrok_ingress_controller" {
 # and https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
 resource "helm_release" "ngrok" {
   # default to namespace name, for convenience
-  name = kubernetes_namespace.main.id
+  name = "ngrok-ingress-controller"
 
   # see https://github.com/ngrok/kubernetes-ingress-controller
   repository = "https://ngrok.github.io/kubernetes-ingress-controller"
   chart      = "kubernetes-ingress-controller"
-  namespace  = kubernetes_namespace.main.id
+  namespace  = kubernetes_namespace.ngrok_ingress_controller.id
 
   # see https://github.com/ngrok/kubernetes-ingress-controller/releases/tag/kubernetes-ingress-controller-0.6.0
   version = "0.6.0"
@@ -60,4 +60,11 @@ resource "helm_release" "ngrok" {
     name  = "credentials.authtoken"
     value = var.ngrok_authtoken
   }
+
+  set {
+   name = "consul.hashicorp.com/connect-service"
+   value = "ngrok-ingress-controller-kubernetes-ingress-controller"
+  }
+}
+
 }
