@@ -5,6 +5,8 @@
 
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
+| ghcr_token | GitHub Container Registry Access Token. | `string` | yes |
+| ghcr_user | GitHub Container Registry User. | `string` | yes |
 | kubernetes_cluster_ip | Shipyard-provided Kubernetes Cluster IP. | `string` | yes |
 | ngrok_apikey | ngrok API Key. | `string` | yes |
 | ngrok_authtoken | ngrok CLI Auth Token. | `string` | yes |

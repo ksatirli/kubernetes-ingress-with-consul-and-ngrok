@@ -1,3 +1,14 @@
+variable "ghcr_token" {
+  type        = string
+  description = "GitHub Container Registry Access Token."
+  sensitive   = true
+}
+
+variable "ghcr_user" {
+  type        = string
+  description = "GitHub Container Registry User."
+}
+
 variable "kubernetes_cluster_ip" {
   type        = string
   description = "Shipyard-provided Kubernetes Cluster IP."

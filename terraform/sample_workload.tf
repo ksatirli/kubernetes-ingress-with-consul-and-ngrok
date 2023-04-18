@@ -23,15 +23,30 @@ resource "kubernetes_deployment" "game_2048" {
 
       spec {
         container {
-          name  = "backend"
-          image = "alexwhen/docker-2048"
+          name = "backend"
+
+          # classic version of 2048
+          # image = "alexwhen/docker-2048"
+
+          # HashiCopr-inspired version of 2048
+          image = "ghcr.io/ksatirli/2048:1.0.1"
+
+          # see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#image_pull_policy
+          image_pull_policy = "IfNotPresent"
 
           port {
             name           = "http"
             container_port = var.sample_app_port
           }
         }
+
+        # see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#image_pull_secrets
+        image_pull_secrets {
+          name = kubernetes_secret.dockerconfigjson.metadata.0.name
+        }
       }
+
+
     }
   }
 }

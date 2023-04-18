@@ -41,3 +41,5 @@ jobs:
           VALIDATE_TERRAFORM: true
           VALIDATE_TERRAFORM_TFLINT: true
           VALIDATE_YAML: true
+          YAML_CONFIG_FILE: ".yaml-lint.yml"
+          YAML_ERROR_ON_WARNING: true
