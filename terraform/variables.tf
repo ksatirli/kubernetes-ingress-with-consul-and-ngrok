@@ -17,7 +17,7 @@ variable "docker_image" {
   # default = "alexwhen/docker-2048"
 
   # HashiCorp-inspired version of 2048, made by github.com/tunzor
-  default = "ghcr.io/ksatirli/2048:1.0.2"
+  default = "ghcr.io/ksatirli/2048:1.0.3"
 }
 
 variable "kubernetes_cluster_ip" {

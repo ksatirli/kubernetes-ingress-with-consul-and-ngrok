@@ -14,12 +14,10 @@ resource "kubernetes_manifest" "consul_intention" {
         "name" = "dashboard"
       }
 
-      "sources" = [
-        {
-          action = "allow"
-          name   = "ngrok-ingress-controller-kubernetes-ingress-controller"
-        },
-      ]
+      "sources" = [{
+        action = "allow"
+        name   = "ngrok-ingress-controller-kubernetes-ingress-controller"
+      }]
     }
   }
 }
