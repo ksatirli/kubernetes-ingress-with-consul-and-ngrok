@@ -23,13 +23,8 @@ resource "kubernetes_deployment" "game_2048" {
 
       spec {
         container {
-          name = "backend"
-
-          # classic version of 2048
-          # image = "alexwhen/docker-2048"
-
-          # HashiCopr-inspired version of 2048
-          image = "ghcr.io/ksatirli/2048:1.0.1"
+          name  = "backend"
+          image = var.docker_image
 
           # see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#image_pull_policy
           image_pull_policy = "IfNotPresent"

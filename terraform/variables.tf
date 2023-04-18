@@ -9,6 +9,17 @@ variable "ghcr_user" {
   description = "GitHub Container Registry User."
 }
 
+variable "docker_image" {
+  type       = string
+  description = "Docker Image to run."
+
+  # classic version of 2048
+  # default = "alexwhen/docker-2048"
+
+  # HashiCorp-inspired version of 2048, made by github.com/tunzor
+  default = "ghcr.io/ksatirli/2048:1.0.2"
+}
+
 variable "kubernetes_cluster_ip" {
   type        = string
   description = "Shipyard-provided Kubernetes Cluster IP."

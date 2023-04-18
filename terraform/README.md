@@ -11,6 +11,7 @@
 | ngrok_apikey | ngrok API Key. | `string` | yes |
 | ngrok_authtoken | ngrok CLI Auth Token. | `string` | yes |
 | ngrok_domain | ngrok Custom Domain. | `string` | yes |
+| docker_image | Docker Image to run. | `string` | no |
 | kubernetes_config_path | Path to `kubectl` Configuration. | `string` | no |
 | kubernetes_context | Kubernetes Context. | `string` | no |
 | sample_app_port | Sample Application Network Port. | `number` | no |
