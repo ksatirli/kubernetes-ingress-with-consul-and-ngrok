@@ -1,7 +1,9 @@
-# This is a Terraform-managed file; manual changes will be overwritten.
-# see https://github.com/workloads/github-organization/blob/main/templates/gitignores/terraform.gitignore
-
-**/.terraform/*
+**/.envrc
+terraform.tfvars
 *.tfstate
 *.tfstate.*
-terraform.tfvars
+**/.terraform/*
+
+# Shipyard-generated files
+terraform/shipyard.kubectl_config
+terraform/shipyard-config.auto.tfvars

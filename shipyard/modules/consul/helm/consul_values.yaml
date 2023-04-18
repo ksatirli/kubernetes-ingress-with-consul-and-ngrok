@@ -1,0 +1,116 @@
+---
+
+# yamllint disable-line rule:line-length
+global:
+  name: consul
+
+  datacenter: #{{ .Vars.datacenter }}
+
+  acls:
+    manageSystemACLs: #{{ .Vars.acl_enabled }}
+
+    #{{ if eq .Vars.acl_enabled true }}
+    replicationToken:
+      secretName: #{{ if eq .Vars.replication_token_name "" }}null#{{ else }}#{{ .Vars.replication_token_name }}#{{ end }}
+      secretKey: #{{ if eq .Vars.replication_token_key "" }}null#{{ else }}#{{ .Vars.replication_token_key }}#{{ end }}
+    #{{ end }}
+
+  tls:
+    enabled: #{{ .Vars.tls_enabled }}
+    enableAutoEncrypt: #{{ .Vars.tls_enabled }}
+    httpsOnly: false
+
+    # Configure an external CA Cert and key for the cluster
+    caCert:
+      secretName: #{{ if eq .Vars.cert_secret_name ""}}null#{{ else }}#{{ .Vars.cert_secret_name }}#{{ end }}
+      secretKey: #{{ if eq .Vars.cert_secret_key ""}}null#{{ else }}#{{ .Vars.cert_secret_key }}#{{ end }}
+
+    caKey:
+      secretName: #{{ if eq .Vars.key_secret_name ""}}null#{{ else }}#{{ .Vars.key_secret_name }}#{{ end }}
+      secretKey: #{{ if eq .Vars.key_secret_key ""}}null#{{ else }}#{{ .Vars.key_secret_key }}#{{ end }}
+
+  federation:
+    enabled: #{{ .Vars.federation_enabled }}
+    createFederationSecret: #{{ .Vars.create_federation_secret }}
+    primaryDatacenter: #{{ .Vars.primary_datacenter }}
+    primaryGateways: #{{ if eq .Vars.primary_gateway "" }}[]#{{ else }}["#{{ .Vars.primary_gateway }}"]#{{ end }}
+    k8sAuthMethodHost: #{{ if eq .Vars.k8s_api_server "" }}null#{{ else }}"#{{ .Vars.k8s_api_server }}"#{{ end }}
+
+  image: #{{ .Vars.consul_image }}
+
+  imageK8S: #{{ .Vars.consul_k8s_image }}
+
+  imageEnvoy: #{{ .Vars.consul_envoy_image }}
+
+  metrics:
+    enabled: #{{ .Vars.metrics_enabled }}
+    enableAgentMetrics: #{{ .Vars.metrics_enabled }}
+    enableGatewayMetrics: #{{ .Vars.metrics_enabled }}
+
+  logLevel: #{{ if eq .Vars.debug true }}"debug"#{{ else }}"info"#{{ end }}
+
+server:
+  replicas: 1
+  bootstrapExpect: 1
+
+  storage: 128Mi
+
+  extraConfig: |
+    {
+      "ui_config": {
+        "enabled": true,
+        "metrics_provider": "prometheus",
+        "metrics_proxy": {
+          "base_url": "http://prometheus-kube-prometheus-prometheus.#{{ .Vars.monitoring_namespace }}.svc:9090"
+        }
+      }
+    }
+
+controller:
+  enabled: true
+ui:
+  enabled: true
+connectInject:
+  enabled: true
+  default: #{{ .Vars.auto_inject_enabled }}
+  failurePolicy: "Ignore"
+  replicas: 1
+  envoyExtraArgs: #{{ if eq .Vars.debug true }}"--log-level debug"#{{ else }}null#{{ end }}
+
+  transparentProxy:
+    defaultEnabled: #{{ .Vars.transparent_proxy_enabled }}
+
+  # Requires Consul v1.5+ and consul-k8s v0.8.1+
+  centralConfig:
+    enabled: true
+
+  k8sDenyNamespaces:
+  #{{ range .Vars.auto_inject_deny_namespaces }}
+    - #{{ . }}
+  #{{ end }}
+
+ingressGateways:
+  enabled: #{{ .Vars.ingress_gateway_enabled }}
+  defaults:
+    replicas: 1
+    service:
+      ports:
+      #{{ range .Vars.ingress_gateway_ports }}
+        - port: #{{ . }}
+          nodePort: null
+      #{{ end }}
+
+
+meshGateway:
+  enabled: #{{ .Vars.mesh_gateway_enabled }}
+  replicas: 1
+
+  wanAddress:
+    source: Static
+    static: #{{ .Vars.mesh_gateway_address }}
+    port: 30443
+
+  service:
+    enabled: #{{ .Vars.mesh_gateway_enabled }}
+    type: NodePort
+    nodePort: 30443
