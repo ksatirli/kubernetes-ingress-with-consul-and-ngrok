@@ -1,0 +1,27 @@
+---
+
+name: "Security Scan: Snyk IaC"
+
+on:
+  push:
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      # see https://github.com/snyk/actions/tree/master/iac
+      - name: Lint Code with Snyk
+        uses: snyk/actions/iac@master
+        env:
+          # see https://github.com/snyk/actions#getting-your-snyk-token
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          file: ./terraform
+          # see https://docs.snyk.io/products/snyk-infrastructure-as-code/snyk-cli-for-infrastructure-as-code/iac-ignores-using-the-.snyk-policy-file#policy-flags-and-policy-file-notes
+          sarif: true
